@@ -61,8 +61,8 @@ def main():
     # Add arguments to script
     parser = argparse.ArgumentParser()
 
-    parser.add_argument('--C', type=float, default=1.0, help="Inverse of regularization strength; smaller values cause stronger regularization")
-    parser.add_argument('--gamma', type=int, default=0.1, help="How far the influence of a single training example reaches; smaller values cause far reach")
+    parser.add_argument('--C', type=float, default=1.0, help="Regularization strength: greater values cause stronger regularization")
+    parser.add_argument('--gamma', type=float, default=0.1, help="How far the influence of a single training example reaches; greater values cause greater reach")
 
     args = parser.parse_args()
 

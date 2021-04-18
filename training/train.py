@@ -55,6 +55,8 @@ test_size = 0.25
 random_state = 7
 
 x_train, x_test, y_train, y_test = train_test_split(x, y, test_size = test_size, random_state = random_state)
+if (y_train.unique().shape[0] < 2):
+    run.log('PROBLEM WITH TRAIN', y_train.unique().shape[0], y_train.shape)
 run = Run.get_context()
 
 def main():

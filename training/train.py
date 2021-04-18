@@ -1,5 +1,5 @@
 from sklearn.svm import SVC
-from sklearn.metrics import accuracy_score
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import OneHotEncoder, MinMaxScaler
 
@@ -31,12 +31,11 @@ def clean_data(data):
     x_df = encode_categorical_column(x_df, "EducationField")
 
     x_df["Gender"] = x_df.Gender.apply(lambda s: 1 if s == "Male" else 0)
-    x_df["OverTime"] = x_df.OverTime.apply(lambda s: 1 if s == "Yes" else 0)
 
     x_df = encode_categorical_column(x_df, "JobRole")
     x_df = encode_categorical_column(x_df, "MaritalStatus")
 
-    y_df = x_df.pop("Attrition").apply(lambda s: 1 if s == "Yes" else 0)
+    y_df = x_df.pop("Attrition")
 
     scaler = MinMaxScaler()
     x_scaled = scaler.fit_transform(x_df)
@@ -56,15 +55,6 @@ random_state = 7
 
 x_train, x_test, y_train, y_test = train_test_split(x, y, test_size = test_size, random_state = random_state)
 run = Run.get_context()
-
-run.log("MANDATORY NUMBER", 100500)
-
-
-if (y_train.unique().shape[0] < 2):
-    run.log('PROBLEM WITH TRAIN', y_train.unique().shape[0], y_train.shape)
-
-if (y_train.unique().shape[0] < 2):
-    run.log('PROBLEM WITH TRAIN', y_train.unique().shape[0], y_train.shape)
 
 def main():
     # Add arguments to script
@@ -91,7 +81,13 @@ def main():
     y_pred = model.predict(x_test)
 
     accuracy = accuracy_score(y_pred, y_test)
+    precision = precision_score(y_pred, y_test)
+    recall = recall_score(y_pred, y_test)
+    f1 = f1_score(y_pred, y_test)
     run.log("Accuracy", np.float(accuracy))
+    run.log("Precision", np.float(precision))
+    run.log("Recall", np.float(recall))
+    run.log("F1 Score", np.float(f1))
 
 if __name__ == '__main__':
     main()

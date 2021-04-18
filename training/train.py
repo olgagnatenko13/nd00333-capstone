@@ -81,7 +81,7 @@ def main():
     y_pred = model.predict(x_test)
 
     accuracy = accuracy_score(y_pred, y_test)
-    run.log("accuracy:", np.float(accuracy))
+    run.log("Accuracy", np.float(accuracy))
 
 if __name__ == '__main__':
     main()

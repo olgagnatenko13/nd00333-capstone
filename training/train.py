@@ -54,8 +54,11 @@ x, y = clean_data(ds)
 test_size = 0.25
 random_state = 7
 
-x_train, x_test, y_train, y_test = train_test_split(x, y, test_size = test_size, random_state = random_state)
+x_train, x_test, y_train, y_test = train_test_split(x, y, test_size = test_size, random_state = random_state, stratify = y)
 run = Run.get_context()
+
+if (y_train.unique().shape[0] < 2):
+    run.log('PROBLEM WITH TRAIN', y_train.unique().shape[0], y_train.shape)
 
 def main():
     # Add arguments to script
@@ -69,10 +72,11 @@ def main():
     run.log("Regularization Strength:", np.float(args.C))
     run.log("Gamma:", np.float(args.gamma))
 
-    kernel = "rbf" # RBD kernel used for the model 
-    max_iter = 100
+    kernel = "rbf" # RBF kernel used for the model 
+    max_iter = 50
+    class_weight = 'balanced'
 
-    model = SVC(kernel = kernel, C = args.C, gamma = args.gamma, max_iter = max_iter).fit(x_train, y_train)
+    model = SVC(kernel = kernel, C = args.C, gamma = args.gamma, max_iter = max_iter, class_weight = class_weight).fit(x_train, y_train)
 
     output_folder='./outputs'
     os.makedirs(output_folder, exist_ok=True)    

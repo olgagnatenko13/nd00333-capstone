@@ -70,8 +70,31 @@ Ensembles show the best results, as expected, since they combine different algor
 
 The results can be further improved in the future by increasing the experiment timeout setting (since the experiment was terminated due to timeout). 
 
+#### Top 10 features, according to best model 
+![Top 10 features](screenshots/3_0_8_automl_feature_importance.png)
+
 #### Screenshots:
 
+1. AutoML Run Details
+![AutoML Run Details](screenshots/3_0_1_automl_run_details.png)
+
+2. AutoML - completed run 
+![AutoML - completed run](screenshots/3_0_2_run_completed.png)
+
+3. AutoML models 
+![AutoML models](screenshots/3_0_3_automl_models.png)
+
+4. AutoML model details
+![AutoML model details](screenshots/3_0_4_automl_model_details.png)
+
+5. AutoML model metrics 
+![AutoML model metrics](screenshots/3_0_5_automl_model_metrics.png)
+
+6. AutoML model confusion matrix 
+![AutoML model confusion matrix](screenshots/3_0_6_automl_model_confusion_matrix.png)
+
+7. AutoML ensemble components 
+![AutoML ensemble components](screenshots/3_0_7_automl_ensemble_components.png)
 
 ## Hyperparameter Tuning
 ### Model
@@ -117,17 +140,107 @@ As we can see, the accuracy is moderate, so in the future the model can be furth
 
 #### Screenshots
 
+1. Hyperparameter tuning - Run Details 
+![Hyperparameter tuning - Run Details](screenshots/3_1_1_hyperparameter_run_details.png)
+
+2. Hyperparameter tuning - completed run 
+![Hyperparameter tuning - completed run](screenshots/3_1_2_hyperparameter_completed_run.png)
+
+3. Hyperparameter tuning - accuracy 
+![Hyperparameter tuning - accuracy](screenshots/3_1_3_hyperparameter_accuracy.png)
+
+4. Hyperparameter combinations
+![Hyperparameter tuning - accuracy](screenshots/3_1_4_hyperparameter_combinations.png)
+
+5. Hyperparameter tuning - best run 
+![Hyperparameter tuning - best run](screenshots/3_1_5_hyperparameters_best_run.png)
+
+6. Hyperparameter tuning - best run details
+![Hyperparameter tuning - best run details](screenshots/3_1_6_hyperparameters_best_run_details.png)
+
+7. Hyperparameter tuning - best run metrics
+![Hyperparameter tuning - best run metrics](screenshots/3_1_6_hyperparameters_best_run_details.png)
 
 ## Model Deployment
-*TODO*: Give an overview of the deployed model and instructions on how to query the endpoint with a sample input.
+
 ### Deployed Model 
+The deployed model name is "attrition-model". It is available as a REST endpoint, and displayed in Endpoints in Azure Ml Studio.
+
+Endpoint URL:
 
 
 ### Querying the Endpoint
+To consume the model, it is necessary to send a POST request with the following JSON in the body:
+```javascript
+{
+    data: [
+        <list of datapoints provided to the model for prediction>
+    ]
+}
+```
 
+The response is also a JSON of the following format:
+```javascript
+{
+    data: [
+        <list of "Yes" or "No" attrition values for each data point provided in the array>
+    ]
+}
+```
 
 ### Sample Input 
+```javascript
+{
+  "data": [
+    {
+      "Age": 41,
+      "Attrition": "Yes",
+      "BusinessTravel": "Travel_Rarely",
+      "DailyRate": 1102,
+      "Department": "Sales",
+      "DistanceFromHome": 1,
+      "Education": 2,
+      "EducationField": "Life Sciences",
+      "EmployeeCount": 1,
+      "EmployeeNumber": 1,
+      "EnvironmentSatisfaction": 2,
+      "Gender": "Female",
+      "HourlyRate": 94,
+      "JobInvolvement": 3,
+      "JobLevel": 2,
+      "JobRole": "Sales Executive",
+      "JobSatisfaction": 4,
+      "MaritalStatus": "Single",
+      "MonthlyIncome": 5993,
+      "MonthlyRate": 19479,
+      "NumCompaniesWorked": 8,
+      "OverTime": "Yes",
+      "PercentSalaryHike": 11,
+      "PerformanceRating": 3,
+      "RelationshipSatisfaction": 1,
+      "StockOptionLevel": 0,
+      "TotalWorkingYears": 8,
+      "TrainingTimesLastYear": 0,
+      "WorkLifeBalance": 1,
+      "YearsAtCompany": 6,
+      "YearsInCurrentRole": 4,
+      "YearsSinceLastPromotion": 0,
+      "YearsWithCurrManager": 5
+    }
+  ]
+}
+```
 
+### Sample Response 
+```javascript
+{
+    "data": {
+        ["Yes"]
+    },
+    "message": "Successfully classified attrition"
+}
+
+```
 
 ## Screen Recording
 Screencast is available via the following link: 

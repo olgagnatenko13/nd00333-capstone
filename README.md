@@ -166,7 +166,8 @@ As we can see, the accuracy is moderate, so in the future the model can be furth
 ### Deployed Model 
 The deployed model name is "attrition-model". It is available as a REST endpoint, and displayed in Endpoints in Azure Ml Studio.
 
-Endpoint URL:
+Endpoint URL: http://7ab698bf-34cb-4ab8-be4d-7b813904afdb.southcentralus.azurecontainer.io/score
+Authentication token (key): U1xiKqV2SrekUNE5cxpDqgXKUq7AFMWw
 
 
 ### Querying the Endpoint

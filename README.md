@@ -243,14 +243,25 @@ The response is also a JSON of the following format:
 ```
 
 ### Sample Response 
+
+**Success**
+
 ```javascript
 {
     "data": {
-        ["Yes"]
+        [True]
     },
     "message": "Successfully classified attrition"
 }
+```
 
+**Failure**
+
+```javascript
+{
+    "error": "error text",
+    "message": "Failed to classify attrition"
+}
 ```
 
 ## Screen Recording

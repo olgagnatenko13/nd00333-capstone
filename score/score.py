@@ -38,8 +38,7 @@ def init():
 def run(data):
     try:
         raw_data = json.loads(data)
-        print("raw", raw_data.data)
-        correct_data = clean_data(raw_data.data)
+        correct_data = clean_data(raw_data["data"])
         result = model.predict(correct_data)
         return {'data' : result.tolist() , 'message' : "Successfully classified attrition"}
     except Exception as e:

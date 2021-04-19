@@ -1,5 +1,7 @@
 import joblib
+import json 
 from azureml.core.model import Model
+from azureml.data.dataset_factory import TabularDatasetFactory
 import os 
 
 def clean_data(data):
@@ -12,7 +14,9 @@ def clean_data(data):
         return df 
 
     # Clean data, apply one hot encoding to categorical columns
-    x_df = data.to_pandas_dataframe().dropna()
+    x_df = pd.DataFrame(data)
+    print("df", x_df)
+    x_ddf = x_df.dropna()
     x_df = encode_categorical_column(x_df, "BusinessTravel")
     x_df = encode_categorical_column(x_df, "Department")
     x_df = encode_categorical_column(x_df, "EducationField")
@@ -33,8 +37,9 @@ def init():
 
 def run(data):
     try:
-        print(data)
-        correct_data = clean_data(data['data'])
+        raw_data = json.loads(data)
+        print("raw", raw_data.data)
+        correct_data = clean_data(raw_data.data)
         result = model.predict(correct_data)
         return {'data' : result.tolist() , 'message' : "Successfully classified attrition"}
     except Exception as e:

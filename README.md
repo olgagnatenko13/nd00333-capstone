@@ -264,11 +264,29 @@ The response is also a JSON of the following format:
 }
 ```
 
+#### Screenshots
+
+1. Active deployed endpoint for the best model 
+![Active deployed endpoint for the best model](screenshots/3_2_1_model_endpoint_active.png)
+
+2. REST endpoint URL and key 
+![REST endpoint URL and key](screenshots/3_2_2_REST_endpoint_url_and_key.png)
+
+3. Model consumed using Python script 
+![Model consumed using Python script](screenshots/3_2_3_model_consumed.png)
+
+4. Model consumed using Postman
+![Model consumed using Postman](screenshots/3_2_4_request_via_Postman.png)
+
 ## Screen Recording
-Screencast is available via the following link: 
+Screencast is available via the following link: https://youtu.be/yK9f2VaXbCA
 
-*TODO* Provide a link to a screen recording of the project in action. Remember that the screencast should demonstrate:
-- A working model
-- Demo of the deployed  model
-- Demo of a sample request sent to the endpoint and its response
+## Standout Suggestions
 
+The deployed endpoint provides extended logging options due to enabled App Insights.
+
+1. Application Insights are enabled for the endpoint
+![Application Insights are enabled for the endpoint](screenshots/3_2_5_app_insights_enabled.png)
+
+2. Example of running Application Insights after consuming the model 
+![Example of running Application Insights after consuming the model](screenshots/3_2_6_app_insights_launched.png)

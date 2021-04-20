@@ -164,7 +164,9 @@ As we can see, the accuracy is moderate, so in the future the model can be furth
 ## Model Deployment
 
 ### Deployed Model 
-The deployed model name is "attrition-model". It is available as a REST endpoint, and displayed in Endpoints in Azure Ml Studio.
+The deployed model name is "attrition-model". 
+It is available as a REST endpoint, and displayed in Endpoints in Azure Ml Studio.
+The deployment environment configuration is saved to "./outputs" folder.
 
 Endpoint URL: http://cb69762c-1f89-43fa-a044-bcd8bf58347c.southcentralus.azurecontainer.io/score
 Authentication token (key): LjKYPOuhPJYFfNdIJJDUVq1fDnYVsylm
